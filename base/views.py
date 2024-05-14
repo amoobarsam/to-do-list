@@ -1,12 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
-
 from django.views.generic.detail import DetailView 
-from django.views.generic.edit import  CreateView
-
+from django.views.generic.edit import  CreateView , UpdateView
 from django.urls import reverse_lazy
 from .models import Task
 
@@ -17,17 +12,16 @@ class TaskList(ListView):
 class TaskDeatail(DetailView):
     model = Task
     context_object_name= 'task'
-    template_name='base/tasks.html'
-    
-    
-class TaskCreate(CreateView):
-    model = Task
-    fields = '__all__'  
-    success_url = reverse_lazy('tasks')  
+    template_name='base/tasks.html'  
 
 class TaskCreate(CreateView):
     model = Task
     fields = '__all__'
-    success_url = reverse_lazy('task')
+    success_url = reverse_lazy('tasks')
+    
+class UpdaTask(UpdateView):
+    model = Task
+    fields = '__all__'
+    success_url = reverse_lazy('tasks')    
     
 
